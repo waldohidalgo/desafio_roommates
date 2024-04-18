@@ -1,0 +1,58 @@
+body {
+  text-align: center;
+  font-family: "Domine", serif;
+}
+header {
+  background-color: #eee;
+}
+main {
+  background: #e2fc86;
+}
+
+header h1 {
+  width: fit-content;
+  margin-inline: auto;
+}
+.separador {
+  height: 10px;
+  width: 100%;
+  background-color: #0000ff;
+}
+
+.modal-body {
+  color: black;
+  text-shadow: none;
+}
+
+button {
+  background: #0000ff !important;
+}
+i {
+  cursor: pointer;
+}
+
+.seccion_agregar_roommate,
+.seccion_historial {
+  background-color: grey;
+  border: 1px solid black;
+}
+.seccion_agregar_gasto {
+  background-color: white;
+  border: 1px solid black;
+  height: 100%;
+}
+
+#wrapperRoommatesTable {
+  max-height: 400px !important;
+  overflow-y: auto;
+  background-color: black;
+}
+
+#descripcion {
+  resize: none;
+  height: 7rem;
+}
+.contenedor_tabla_historial {
+  overflow: auto;
+  background-color: black;
+}
