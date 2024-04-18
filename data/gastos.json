@@ -1,3 +1,11 @@
 {
-  "gastos": []
+  "gastos": [
+    {
+      "id": 2,
+      "idRoommate": "dcfd29ae",
+      "roommate": "Pedro Rhodes",
+      "descripcion": "  Articulos de limpieza",
+      "monto": 15000
+    }
+  ]
 }

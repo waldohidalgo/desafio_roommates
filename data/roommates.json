@@ -1,3 +1,16 @@
 {
-  "roommates": []
+  "roommates": [
+    {
+      "id": "dcfd29ae",
+      "nombre": "Pedro Rhodes",
+      "debe": 0,
+      "recibe": 7500
+    },
+    {
+      "id": "9ded6118",
+      "nombre": "Gregory Mitchelle",
+      "debe": -7500,
+      "recibe": 0
+    }
+  ]
 }

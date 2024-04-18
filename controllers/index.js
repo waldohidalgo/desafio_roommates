@@ -164,7 +164,7 @@ export async function deleteRoommate(req, res) {
     const gastos = dataParseGastos.gastos;
     const newGastos = gastos.filter((gasto) => gasto.idRoommate !== id);
 
-    const nuevosRoommates = calcularDebeHaber(gastos, newRoommates);
+    const nuevosRoommates = calcularDebeHaber(newGastos, newRoommates);
     await fs.writeFile(
       filePathGastos,
       JSON.stringify({ gastos: newGastos }, null, 2),
