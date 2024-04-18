@@ -6,6 +6,7 @@ El presente repositorio contiene el código solución del desafío 1 del módulo
 
 - [Solución al desafío Roommates](#solución-al-desafío-roommates)
   - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [Deploy](#deploy)
   - [Requerimientos](#requerimientos)
   - [Diagrama de Flujo](#diagrama-de-flujo)
     - [1.Estado Inicial](#1estado-inicial)
@@ -28,6 +29,10 @@ El presente repositorio contiene el código solución del desafío 1 del módulo
       - [4.5. GET /roommates: Devuelve todos los roommates almacenados en el servidor (roommates.json). Se debe considerar recalcular y actualizar las cuentas de los roommates luego de este proceso. (3 Puntos)](#45-get-roommates-devuelve-todos-los-roommates-almacenados-en-el-servidor-roommatesjson-se-debe-considerar-recalcular-y-actualizar-las-cuentas-de-los-roommates-luego-de-este-proceso-3-puntos)
     - [5. Devolver los códigos de estado HTTP correspondientes a cada situación. (1 Punto)](#5-devolver-los-códigos-de-estado-http-correspondientes-a-cada-situación-1-punto)
   - [Extra](#extra)
+
+## Deploy
+
+El proyecto es completamente funcional y lo he desplegado a Render en el siguiente [link](https://desafio-roommates.onrender.com/)
 
 ## Requerimientos
 
