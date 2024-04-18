@@ -45,6 +45,8 @@ router.put("/gasto", updateGasto);
 
 router.delete("/gasto", deleteGasto);
 
+//Ruta para resetear archivos json
+
 router.get("/reset", resetData);
 
 //No found
@@ -53,9 +55,12 @@ router.get("/*", notFound);
 
 setInterval(async () => {
   try {
-    const response = await fetch("http://localhost:4000/reset", {
-      method: "GET",
-    });
+    const response = await fetch(
+      "https://desafio-roommates.onrender.com/reset",
+      {
+        method: "GET",
+      },
+    );
     if (response.status === 200) {
       console.log("Se reinicio el servidor exitosamente");
       return;
@@ -65,6 +70,6 @@ setInterval(async () => {
   } catch (error) {
     console.error("Error al llamar a la ruta:", error);
   }
-}, 300000);
+}, 1800000);
 
 export default router;
