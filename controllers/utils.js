@@ -1,3 +1,6 @@
+import { promises as fs } from "fs";
+import path from "path";
+
 export function calcularDebeHaber(gastos, roommates) {
   const gastoTotalporRoommate = {};
   gastos.forEach((gasto) => {
@@ -30,4 +33,22 @@ export function calcularDebeHaber(gastos, roommates) {
   });
 
   return roommates;
+}
+
+export async function resetScript() {
+  try {
+    await fs.writeFile(
+      path.join(path.resolve(), "data", "roommates.json"),
+      JSON.stringify({ roommates: [] }, null, 2),
+      "utf-8",
+    );
+    await fs.writeFile(
+      path.join(path.resolve(), "data", "gastos.json"),
+      JSON.stringify({ gastos: [] }, null, 2),
+      "utf-8",
+    );
+    return "exito";
+  } catch (error) {
+    return error;
+  }
 }

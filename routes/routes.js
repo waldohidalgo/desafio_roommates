@@ -13,6 +13,8 @@ import {
   resetData,
 } from "../controllers/index.js";
 
+import { resetScript } from "../controllers/utils.js";
+
 const router = express.Router();
 
 router.get("/", renderHome);
@@ -55,20 +57,14 @@ router.get("/*", notFound);
 
 setInterval(async () => {
   try {
-    const response = await fetch(
-      "https://desafio-roommates.onrender.com/reset",
-      {
-        method: "GET",
-      },
-    );
-    if (response.status === 200) {
-      console.log("Se reinicio el servidor exitosamente");
-      return;
+    const resultado = await resetScript();
+    if (resultado === "exito") {
+      console.log("Data reseteada");
     } else {
-      throw new Error("No se pudo reiniciar el servidor");
+      throw new Error("No se pudo resetear la data");
     }
   } catch (error) {
-    console.error("Error al llamar a la ruta:", error);
+    console.error("Error al resetear la data", error.message);
   }
 }, 1800000);
 

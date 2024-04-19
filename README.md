@@ -28,7 +28,7 @@ El presente repositorio contiene el código solución del desafío 1 del módulo
       - [4.4. DELETE /gasto: Recibe el id del gasto usando las Query Strings y la elimine del historial de gastos (gastos.json)](#44-delete-gasto-recibe-el-id-del-gasto-usando-las-query-strings-y-la-elimine-del-historial-de-gastos-gastosjson)
       - [4.5. GET /roommates: Devuelve todos los roommates almacenados en el servidor (roommates.json). Se debe considerar recalcular y actualizar las cuentas de los roommates luego de este proceso. (3 Puntos)](#45-get-roommates-devuelve-todos-los-roommates-almacenados-en-el-servidor-roommatesjson-se-debe-considerar-recalcular-y-actualizar-las-cuentas-de-los-roommates-luego-de-este-proceso-3-puntos)
     - [5. Devolver los códigos de estado HTTP correspondientes a cada situación. (1 Punto)](#5-devolver-los-códigos-de-estado-http-correspondientes-a-cada-situación-1-punto)
-  - [Extra](#extra)
+  - [Extra: Reseteo de Data vía Ruta y vía intervalo cada 30 minutos](#extra-reseteo-de-data-vía-ruta-y-vía-intervalo-cada-30-minutos)
 
 ## Deploy
 
@@ -216,9 +216,9 @@ export async function getRoommates(req, res) {
 }
 ```
 
-## Extra
+## Extra: Reseteo de Data vía Ruta y vía intervalo cada 30 minutos
 
-Creación de ruta **reset** para reseteo de data cada 30 minutos:
+Creación de ruta **reset** para reseteo de data vía ruta:
 
 ```js
 router.get("/reset", resetData);
@@ -246,25 +246,41 @@ export async function resetData(req, res) {
 }
 ```
 
-Y el siguiente **setInterval**:
+Y creación de un **setInterval** para reseteo de data cada 30 minutos:
 
 ```js
 setInterval(async () => {
   try {
-    const response = await fetch(
-      "https://desafio-roommates.onrender.com/reset",
-      {
-        method: "GET",
-      },
-    );
-    if (response.status === 200) {
-      console.log("Se reinicio el servidor exitosamente");
-      return;
+    const resultado = await resetScript();
+    if (resultado === "exito") {
+      console.log("Data reseteada");
     } else {
-      throw new Error("No se pudo reiniciar el servidor");
+      throw new Error("No se pudo resetear la data");
     }
   } catch (error) {
-    console.error("Error al llamar a la ruta:", error);
+    console.error("Error al resetear la data", error.message);
   }
 }, 1800000);
+```
+
+El cual hace uso de la siguiente función **resetScript**:
+
+```js
+export async function resetScript() {
+  try {
+    await fs.writeFile(
+      path.join(path.resolve(), "data", "roommates.json"),
+      JSON.stringify({ roommates: [] }, null, 2),
+      "utf-8",
+    );
+    await fs.writeFile(
+      path.join(path.resolve(), "data", "gastos.json"),
+      JSON.stringify({ gastos: [] }, null, 2),
+      "utf-8",
+    );
+    return "exito";
+  } catch (error) {
+    return error;
+  }
+}
 ```
